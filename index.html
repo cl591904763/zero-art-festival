@@ -111,6 +111,14 @@
         <a href="#about" class="btn-outline px-8 py-4 text-white/60 text-sm tracking-wide inline-flex items-center gap-2">了解更多<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></a>
       </div>
 
+      <!-- 发起方标识 -->
+      <div class="mt-12 animate-fade-in flex items-center justify-center gap-2" style="animation-delay:.25s">
+        <div class="w-6 h-6 rounded-full overflow-hidden border border-white/[.06]">
+          <img src="images/logo-45-spring.jpg" alt="45°青春" class="w-full h-full object-cover" />
+        </div>
+        <span class="text-white/15 text-[10px] tracking-[2px]">活动发起 · 45°青春</span>
+      </div>
+
       <div class="absolute bottom-10 left-1/2 -translate-x-1/2"><div class="scroll-indicator"></div></div>
     </div>
   </header>
@@ -509,13 +517,26 @@
   </div>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="border-t border-white/[.03] py-12 px-4">
+  <footer class="border-t border-white/[.03] pt-16 pb-12 px-4">
     <div class="max-w-5xl mx-auto text-center">
-      <div class="flex items-center justify-center gap-3 mb-6">
+      <div class="flex items-center justify-center gap-3 mb-8">
         <span class="w-6 h-px bg-white/10"></span>
         <span class="text-white/10 text-[10px] tracking-[6px] uppercase">0 · 60 · 1</span>
         <span class="w-6 h-px bg-white/10"></span>
       </div>
+
+      <!-- 活动主办方 -->
+      <div class="flex flex-col items-center justify-center gap-3 mb-8">
+        <div class="w-14 h-14 rounded-full overflow-hidden border border-white/[.06] p-1 opacity-70 hover:opacity-90 transition-opacity">
+          <img src="images/logo-45-spring.jpg" alt="45°青春" class="w-full h-full object-cover rounded-full" />
+        </div>
+        <div>
+          <p class="text-white/15 text-[10px] tracking-[4px] uppercase mb-1">活动发起</p>
+          <p class="text-white/40 text-sm font-medium tracking-wide">45°青春</p>
+        </div>
+      </div>
+
+      <div class="h-px bg-white/[.02] max-w-xs mx-auto mb-6"></div>
       <p class="text-white/10 text-xs tracking-[4px] uppercase">零元60天 · 公益融合艺术节</p>
       <p class="text-white/[.04] text-xs mt-3">没有预算 · 只有创造力</p>
     </div>

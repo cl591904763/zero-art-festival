@@ -1,0 +1,100 @@
+{
+  "name": "零元60天公益融合艺术节报名",
+  "needAuth": false,
+  "tables": [
+    {
+      "tableName": "registrations",
+      "description": "策展人/艺术家报名表",
+      "columns": [
+        {
+          "columnName": "id",
+          "columnType": "INT",
+          "columnComment": "主键ID",
+          "isRequired": true,
+          "isPrimary": true,
+          "isShow": true
+        },
+        {
+          "columnName": "name",
+          "columnType": "VARCHAR(50)",
+          "columnComment": "姓名",
+          "isRequired": true,
+          "isPrimary": false,
+          "isShow": true
+        },
+        {
+          "columnName": "phone",
+          "columnType": "VARCHAR(20)",
+          "columnComment": "手机号",
+          "isRequired": true,
+          "isPrimary": false,
+          "isShow": true
+        },
+        {
+          "columnName": "role",
+          "columnType": "VARCHAR(50)",
+          "columnComment": "报名身份：策展人/艺术家/志愿者/其他",
+          "isRequired": true,
+          "isPrimary": false,
+          "isShow": true
+        },
+        {
+          "columnName": "specialty",
+          "columnType": "VARCHAR(255)",
+          "columnComment": "艺术方向/专长领域（如：装置艺术、绘画、声音艺术、行为艺术等）",
+          "isRequired": true,
+          "isPrimary": false,
+          "isShow": true
+        },
+        {
+          "columnName": "bio",
+          "columnType": "FULLTEXT",
+          "columnComment": "个人简介/过往作品说明",
+          "isRequired": false,
+          "isPrimary": false,
+          "isShow": true
+        },
+        {
+          "columnName": "available_time",
+          "columnType": "VARCHAR(255)",
+          "columnComment": "可参与时间（如：全程60天、周末、仅某几天等）",
+          "isRequired": true,
+          "isPrimary": false,
+          "isShow": true
+        },
+        {
+          "columnName": "portfolio_url",
+          "columnType": "VARCHAR(1024)",
+          "columnComment": "作品链接/社交媒体账号",
+          "isRequired": false,
+          "isPrimary": false,
+          "isShow": true
+        },
+        {
+          "columnName": "wechat",
+          "columnType": "VARCHAR(100)",
+          "columnComment": "微信号",
+          "isRequired": false,
+          "isPrimary": false,
+          "isShow": true
+        },
+        {
+          "columnName": "remark",
+          "columnType": "FULLTEXT",
+          "columnComment": "备注/其他想说的话",
+          "isRequired": false,
+          "isPrimary": false,
+          "isShow": true
+        },
+        {
+          "columnName": "created_at",
+          "columnType": "DATETIME",
+          "columnComment": "报名时间",
+          "isRequired": false,
+          "isPrimary": false,
+          "isShow": true
+        }
+      ]
+    }
+  ]
+}

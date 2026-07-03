@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>0元60天 · 公益融合艺术节</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            rust:{50:'#fef2f2',100:'#fee2e2',200:'#fecaca',300:'#fca5a5',400:'#f87171',500:'#c2410c',600:'#9a3412',700:'#7c2d12',800:'#5c1a0a',900:'#3b0d04'},
+            brick:{50:'#fdf2e9',100:'#fae1cc',200:'#f4c39a',300:'#eea567',400:'#e88735',500:'#d46a1e',600:'#a95418',700:'#7e3e12',800:'#54290c',900:'#2a1506'},
+            clay:{50:'#faf5f0',100:'#f0e6d6',200:'#e0cdad',300:'#d0b484',400:'#c09b5b',500:'#a8823d',600:'#876830',700:'#664e24',800:'#453418',900:'#231a0c'},
+          },
+          fontFamily:{display:['"Noto Serif SC"','serif'],mono:['"JetBrains Mono"','monospace']},
+          animation:{'fade-in':'fadeIn 0.8s ease-out','slide-up':'slideUp 0.8s cubic-bezier(0.16,1,0.3,1)','drift':'drift 25s ease-in-out infinite','float':'float 7s ease-in-out infinite','sweep':'sweep 10s ease-in-out infinite','reveal':'reveal 1.2s cubic-bezier(0.16,1,0.3,1)'},
+          keyframes:{
+            fadeIn:{'0%':{opacity:'0'},'100%':{opacity:'1'}},
+            slideUp:{'0%':{opacity:'0',transform:'translateY(60px)'},'100%':{opacity:'1',transform:'translateY(0)'}},
+            drift:{'0%,100%':{transform:'translate(0,0)'},'25%':{transform:'translate(15px,-15px)'},'50%':{transform:'translate(-8px,20px)'},'75%':{transform:'translate(10px,8px)'}},
+            float:{'0%,100%':{transform:'translateY(0)'},'50%':{transform:'translateY(-16px)'}},
+            sweep:{'0%,100%':{backgroundPosition:'200% 0'},'50%':{backgroundPosition:'-200% 0'}},
+            reveal:{'0%':{opacity:'0',clipPath:'inset(0 0 100% 0)'},'100%':{opacity:'1',clipPath:'inset(0 0 0 0)'}},
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;background:#0a0a0a;color:#f0ece4}
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-track{background:#111}
+    ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#d46a1e,#c2410c);border-radius:3px}
+    .concrete-bg{background-color:#0d0d0d;background-image:repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(255,255,255,0.012) 48px,rgba(255,255,255,0.012) 49px),repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(255,255,255,0.012) 48px,rgba(255,255,255,0.012) 49px)}
+    .noise-overlay{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.035}
+    .noise-overlay::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    .f-input{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);color:#f0ece4;transition:all .35s ease;border-radius:12px;padding:14px 18px;font-size:14px;width:100%}
+    .f-input:focus{outline:none;border-color:#d46a1e;box-shadow:0 0 0 4px rgba(212,106,30,.12);background:rgba(255,255,255,0.05)}
+    .f-input::placeholder{color:rgba(255,255,255,0.18)}
+    textarea.f-input{resize:none}
+    .f-select{appearance:none;padding-right:40px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23d46a1e' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:18px}
+    .f-select option{background:#1a1a1a;color:#f0ece4}
+    .card-ghost{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(12px);border-radius:20px;transition:all .4s ease}
+    .card-ghost:hover{background:rgba(255,255,255,0.04);border-color:rgba(212,106,30,.25);transform:translateY(-3px)}
+    .btn-burn{background:linear-gradient(135deg,#d46a1e 0%,#c2410c 100%);transition:all .35s ease;border-radius:14px;font-weight:600}
+    .btn-burn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(212,106,30,.3)}
+    .btn-burn:active{transform:translateY(0)}
+    .btn-outline{border:1px solid rgba(212,106,30,.4);border-radius:14px;transition:all .35s ease}
+    .btn-outline:hover{background:rgba(212,106,30,.1);border-color:#d46a1e}
+    .divider-light{height:1px;background:linear-gradient(90deg,transparent,rgba(212,106,30,.25),transparent)}
+    .modal-bg{background:rgba(0,0,0,.75);backdrop-filter:blur(12px)}
+    .industrial-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 16px 6px 10px;border:1px solid rgba(212,106,30,.25);border-radius:100px;background:rgba(212,106,30,.06);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(212,106,30,.7)}
+    .industrial-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:#d46a1e;animation:pulse 2s infinite}
+    .scroll-indicator{width:20px;height:32px;border:2px solid rgba(255,255,255,.12);border-radius:10px;position:relative;margin:0 auto}
+    .scroll-indicator::after{content:'';position:absolute;top:5px;left:50%;transform:translateX(-50%);width:3px;height:8px;background:#d46a1e;border-radius:2px;animation:scrollDot 2s ease-in-out infinite}
+    @keyframes scrollDot{0%,100%{opacity:1;transform:translateX(-50%) translateY(0)}50%{opacity:0;transform:translateX(-50%) translateY(12px)}}
+    .splatter{position:absolute;pointer-events:none;background:radial-gradient(circle,rgba(212,106,30,.08) 0%,transparent 70%);border-radius:50%}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/aipexbase-js/dist/aipexbase.umd.min.js"></script>
+</head>
+<body class="concrete-bg min-h-screen relative overflow-x-hidden">
+  <div class="noise-overlay"></div>
+  <div class="fixed top-[-10%] left-[-5%] w-[600px] h-[600px] bg-rust-500/4 rounded-full blur-[120px] animate-drift pointer-events-none"></div>
+  <div class="fixed bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-brick-500/4 rounded-full blur-[120px] animate-float pointer-events-none" style="animation-delay:-4s"></div>
+  <div class="splatter w-32 h-32 top-[8%] left-[2%]"></div>
+  <div class="splatter w-20 h-20 bottom-[20%] right-[3%]"></div>
+
+  <!-- ===== NAV ===== -->
+  <nav class="fixed top-3 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 rounded-full card-ghost flex items-center gap-4 sm:gap-6 text-xs backdrop-blur-xl">
+    <a href="#about" class="text-white/40 hover:text-brick-400 transition-colors">关于</a>
+    <a href="#roles" class="text-white/40 hover:text-brick-400 transition-colors">招募</a>
+    <a href="#register" class="text-white/40 hover:text-brick-400 transition-colors">报名</a>
+    <span class="w-px h-3 bg-white/10"></span>
+    <a href="#admin" class="text-white/20 hover:text-brick-400 transition-colors text-[10px]" id="adminLink">管理</a>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header class="relative min-h-screen flex flex-col items-center justify-center px-4 py-16 overflow-hidden">
+    <div class="max-w-4xl mx-auto text-center relative z-10 mt-12">
+      <div class="industrial-tag mx-auto mb-10 animate-fade-in"><span></span>0元挑战 · 60天筹备 · 1天现场</div>
+
+      <!-- 主标题：精简三层结构 -->
+      <h1 class="animate-reveal">
+        <div class="text-white text-4xl sm:text-6xl font-black leading-[1.1] tracking-tight mb-2">
+          0元<span class="text-white/20 font-light mx-2">×</span>60天
+        </div>
+        <div class="bg-gradient-to-r from-brick-300 via-rust-300 to-clay-200 bg-clip-text text-transparent text-5xl sm:text-7xl md:text-8xl font-black leading-[1.1] tracking-tight">
+          公益融合艺术节
+        </div>
+      </h1>
+
+      <!-- 一行副标题：地点+核心信息 -->
+      <div class="mt-6 mb-10 animate-fade-in" style="animation-delay:.1s">
+        <p class="text-base sm:text-lg text-white/30 font-light tracking-wide">
+          把地下废弃家具城变成艺术现场
+        </p>
+        <div class="flex items-center justify-center gap-2 mt-3 text-white/20 text-xs tracking-wide">
+          <svg class="w-3.5 h-3.5 text-brick-500/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          上海康健商务广场 · 1号楼地下一层
+        </div>
+      </div>
+
+      <!-- 两个按钮 -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up" style="animation-delay:.2s">
+        <a href="#register" class="btn-burn px-10 py-4 text-white text-base tracking-wide inline-flex items-center gap-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>我要报名</a>
+        <a href="#about" class="btn-outline px-8 py-4 text-white/60 text-sm tracking-wide inline-flex items-center gap-2">了解更多<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></a>
+      </div>
+
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2"><div class="scroll-indicator"></div></div>
+    </div>
+  </header>
+
+  <!-- ===== 沉浸式场景：废墟状态（视差效果） ===== -->
+  <div class="relative overflow-hidden" style="height: min(60vh, 520px)">
+    <div class="absolute inset-0 bg-black">
+      <img src="https://nsp-hag-dist2dtemp-drcn.obs.cn-north-2.myhuaweicloud.cn/osms/9/4/4a0d5a2095a84ba69c3048259d77bbe2/8480f8e5b9374a0eb9f6f57ef4dc7dc3.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=HPUAIXUY93FWZJAS0ICQ%2F20260703%2Fcn-north-2%2Fs3%2Faws4_request&X-Amz-Date=20260703T222106Z&X-Amz-Expires=7200&X-Amz-SignedHeaders=host&X-Amz-Signature=19d5ffd7a9f12ac30f507d781a70c3c60a3ee7d9b5af55d0f98ad02cf735f10c"
+        alt="改造前的地下废弃空间"
+        class="w-full h-full object-cover object-center sm:object-[center_30%] transition-all duration-[2s] ease-out hover:scale-105"
+        style="filter: grayscale(.6) contrast(1.1); opacity: .55"
+        loading="lazy" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-[#0a0a0a]/60"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center px-6">
+      <div class="text-center">
+        <div class="overflow-hidden">
+          <p class="font-mono text-[10px] sm:text-xs tracking-[6px] text-white/20 mb-6 animate-slide-up">BEFORE · 改造前</p>
+        </div>
+        <div class="overflow-hidden">
+          <h2 class="text-5xl sm:text-7xl md:text-8xl font-black text-white/90 font-display leading-[1.1] animate-slide-up" style="animation-delay:.08s">
+            从<br class="sm:hidden"/>废墟<br class="hidden sm:block"/>开始
+          </h2>
+        </div>
+        <div class="overflow-hidden mt-4">
+          <p class="text-white/30 text-xs sm:text-sm tracking-wider animate-slide-up" style="animation-delay:.16s">废弃家具城 · 上海康健商务广场地下一层</p>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
+  </div>
+
+  <!-- ===== 关于 ===== -->
+  <section id="about" class="max-w-5xl mx-auto px-4 py-28 sm:py-36">
+    <div class="text-center mb-16">
+      <div class="industrial-tag mx-auto mb-6">ABOUT</div>
+      <h2 class="text-3xl sm:text-5xl font-black text-white font-display">这个挑战</h2>
+      <div class="divider-light max-w-[200px] mx-auto mt-6"></div>
+    </div>
+
+    <div class="card-ghost p-8 sm:p-12 mb-8 animate-slide-up relative overflow-hidden">
+      <div class="grid sm:grid-cols-5 gap-8 items-center">
+        <div class="sm:col-span-2">
+          <div class="text-7xl sm:text-8xl font-black text-brick-500/10 font-display leading-none select-none">01</div>
+          <div class="text-2xl sm:text-3xl font-black text-white mt-2 font-display">废弃<br class="hidden sm:block"/>家具城</div>
+          <div class="text-sm text-white/20 mt-2 font-mono tracking-wide">上海 · 康健商务广场 · 地下一层</div>
+        </div>
+        <div class="sm:col-span-3 text-white/50 text-sm leading-relaxed space-y-4">
+          <p>地下空间，被遗忘的角落。曾经的家具卖场，如今只剩尘埃与空荡的回音。我们决定用它——用 <strong class="text-brick-400">60天筹备、0元预算</strong>，把它变成一座活的艺术现场。</p>
+          <p class="text-white/30 text-xs tracking-wider">但真正的艺术节，只有 <strong class="text-rust-400">1天</strong>。所有筹备，都为了那一天——让空间被重新激活，让作品与人在废墟中相遇。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+      <div class="card-ghost p-6 text-center animate-slide-up">
+        <div class="text-3xl mb-3">🎯</div>
+        <h3 class="text-white font-semibold text-sm mb-2 tracking-wide">零元挑战</h3>
+        <p class="text-white/35 text-xs leading-relaxed">不花一分钱，用回收材料、空间本身和人的创造力做艺术</p>
+      </div>
+      <div class="card-ghost p-6 text-center animate-slide-up" style="animation-delay:.08s">
+        <div class="text-3xl mb-3">🤝</div>
+        <h3 class="text-white font-semibold text-sm mb-2 tracking-wide">融合共创</h3>
+        <p class="text-white/35 text-xs leading-relaxed">打破媒介边界——装置、绘画、声音、行为、影像，什么都可以</p>
+      </div>
+      <div class="card-ghost p-6 text-center animate-slide-up" style="animation-delay:.16s">
+        <div class="text-3xl mb-3">🏚️</div>
+        <h3 class="text-white font-semibold text-sm mb-2 tracking-wide">空间即作品</h3>
+        <p class="text-white/35 text-xs leading-relaxed">废弃空间的每一寸都是画布，让艺术在废墟中自然生长</p>
+      </div>
+      <div class="card-ghost p-6 text-center animate-slide-up" style="animation-delay:.24s">
+        <div class="text-3xl mb-3">💡</div>
+        <h3 class="text-white font-semibold text-sm mb-2 tracking-wide">人人可参与</h3>
+        <p class="text-white/35 text-xs leading-relaxed">不管你是艺术家还是素人，只要有一个想法，这里就欢迎你</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-16 animate-fade-in">
+      <blockquote class="text-xl sm:text-2xl text-white/20 font-light italic tracking-wide font-display max-w-xl mx-auto">"真正的限制从来不是钱，而是想象力。"</blockquote>
+    </div>
+  </section>
+
+  <!-- ===== 沉浸式场景：改造可能（文字+图片对话） ===== -->
+  <div class="relative overflow-hidden" style="height: min(50vh, 440px)">
+    <div class="absolute inset-0 bg-black">
+      <img src="https://nsp-hag-dist2dtemp-drcn.obs.cn-north-2.myhuaweicloud.cn/osms/9/4/adf6f1f7dfd844919c346506b77530c1/aa61928e405340bd9e7a30fc4a2c832d.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=HPUAIXUY93FWZJAS0ICQ%2F20260703%2Fcn-north-2%2Fs3%2Faws4_request&X-Amz-Date=20260703T222023Z&X-Amz-Expires=7200&X-Amz-SignedHeaders=host&X-Amz-Signature=cc62303c4d193ac288bc8a71b0609a9c1cecdd2d6e9aeabe3d81c66aece114cf"
+        alt="改造后的艺术装置空间"
+        class="w-full h-full object-cover object-[center_35%] sm:object-center transition-all duration-[2s] ease-out hover:scale-105"
+        style="filter: saturate(.7) brightness(.7); opacity: .5"
+        loading="lazy" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/90 via-[#0a0a0a]/30 to-[#0a0a0a]/80"></div>
+    <div class="absolute inset-0 flex items-center px-6 sm:px-16">
+      <div class="max-w-4xl mx-auto w-full">
+        <div class="grid sm:grid-cols-5 gap-6 items-center">
+          <div class="sm:col-span-2 text-center sm:text-left">
+            <div class="overflow-hidden">
+              <p class="font-mono text-[10px] sm:text-xs tracking-[6px] text-brick-500/60 mb-4 animate-slide-up">AFTER · 改造后</p>
+            </div>
+            <div class="overflow-hidden">
+              <blockquote class="text-xl sm:text-3xl font-light text-white/70 font-display leading-relaxed italic animate-slide-up" style="animation-delay:.08s">
+                "空间本身，<br class="sm:hidden"/>就是最大的作品。"
+              </blockquote>
+            </div>
+          </div>
+          <div class="sm:col-span-3 hidden sm:block"></div>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
+  </div>
+
+  <!-- ===== 招募角色 ===== -->
+  <section id="roles" class="max-w-5xl mx-auto px-4 py-20 sm:py-28">
+    <div class="text-center mb-16">
+      <div class="industrial-tag mx-auto mb-6">RECRUITING</div>
+      <h2 class="text-3xl sm:text-5xl font-black text-white font-display">我们在找你</h2>
+      <div class="divider-light max-w-[200px] mx-auto mt-6"></div>
+      <p class="text-white/30 text-sm mt-4">总有一个角色适合你——你的时间很宝贵，我们用得更有意义</p>
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-5">
+      <!-- 策展人 -->
+      <div class="group cursor-default animate-slide-up relative overflow-hidden rounded-[20px]" style="min-height: 380px">
+        <div class="absolute inset-0 bg-black">
+          <img src="https://nsp-hag-dist2dtemp-drcn.obs.cn-north-2.myhuaweicloud.cn/osms/9/4/feb753aa0e7a44d0875ba0bfeaabee01/2a868ce0587549d5a6168d4c745e1ae2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=HPUAIXUY93FWZJAS0ICQ%2F20260703%2Fcn-north-2%2Fs3%2Faws4_request&X-Amz-Date=20260703T223858Z&X-Amz-Expires=7200&X-Amz-SignedHeaders=host&X-Amz-Signature=b68ad23835917746163e3fc3a8d7fd76b214f535c328d03f1db26ede533bb1eb"
+            alt="策展人 - 展览空间规划"
+            class="w-full h-full object-cover transition-all duration-[2s] ease-out group-hover:scale-105"
+            style="filter: brightness(.35) saturate(.7);"
+            loading="lazy" />
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/50"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-7 text-center">
+          <div class="text-4xl mb-3">🎨</div>
+          <h3 class="text-xl font-bold text-white mb-1 font-display">策展人</h3>
+          <div class="w-8 h-0.5 bg-brick-500/50 mx-auto mb-3"></div>
+          <p class="text-white/50 text-xs leading-relaxed mb-3">统筹展览叙事、空间规划、作品编排</p>
+          <div class="flex flex-wrap justify-center gap-1.5">
+            <span class="px-2.5 py-1 rounded-full bg-white/[.06] text-white/40 text-[10px]">空间规划</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/[.06] text-white/40 text-[10px]">策展叙事</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/[.06] text-white/40 text-[10px]">落地执行</span>
+          </div>
+        </div>
+      </div>
+      <!-- 艺术家 -->
+      <div class="group cursor-default animate-slide-up relative overflow-hidden rounded-[20px]" style="min-height: 380px; animation-delay:.1s">
+        <div class="absolute inset-0 bg-black">
+          <img src="https://nsp-hag-dist2dtemp-drcn.obs.cn-north-2.myhuaweicloud.cn/osms/9/4/ca522719c46f4149912b054f5f06ef5f/51b46bde4b99422aa5014c90a5723b19.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=HPUAIXUY93FWZJAS0ICQ%2F20260703%2Fcn-north-2%2Fs3%2Faws4_request&X-Amz-Date=20260703T223859Z&X-Amz-Expires=7200&X-Amz-SignedHeaders=host&X-Amz-Signature=8446faa50771e7ba2c8ea594dfda8aa07925bd5fd70de5c59a40f2567a0d1301"
+            alt="艺术家 - 创作工作室"
+            class="w-full h-full object-cover transition-all duration-[2s] ease-out group-hover:scale-105"
+            style="filter: brightness(.35) saturate(.7);"
+            loading="lazy" />
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/50"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-7 text-center">
+          <div class="text-4xl mb-3">✏️</div>
+          <h3 class="text-xl font-bold text-white mb-1 font-display">艺术家</h3>
+          <div class="w-8 h-0.5 bg-brick-500/50 mx-auto mb-3"></div>
+          <p class="text-white/50 text-xs leading-relaxed mb-3">任何媒介——装置、绘画、声音、行为、影像</p>
+          <div class="flex flex-wrap justify-center gap-1.5">
+            <span class="px-2.5 py-1 rounded-full bg-white/[.06] text-white/40 text-[10px]">装置</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/[.06] text-white/40 text-[10px]">绘画</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/[.06] text-white/40 text-[10px]">声音</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/[.06] text-white/40 text-[10px]">行为</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/[.06] text-white/40 text-[10px]">影像</span>
+          </div>
+        </div>
+      </div>
+      <!-- 志愿者 -->
+      <div class="group cursor-default animate-slide-up relative overflow-hidden rounded-[20px]" style="min-height: 380px; animation-delay:.2s">
+        <div class="absolute inset-0 bg-black">
+          <img src="https://nsp-hag-dist2dtemp-drcn.obs.cn-north-2.myhuaweicloud.cn/osms/9/4/ff9ef0158b5f470da66511083134547c/06599d12a18d4209ac1084fd3cb4f12f.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=HPUAIXUY93FWZJAS0ICQ%2F20260703%2Fcn-north-2%2Fs3%2Faws4_request&X-Amz-Date=20260703T223900Z&X-Amz-Expires=7200&X-Amz-SignedHeaders=host&X-Amz-Signature=80d49a75e73bbf13ad688f43d14488fbebe7c4ca36e99ef949219edad1b9facb"
+            alt="志愿者 - 参与协作"
+            class="w-full h-full object-cover transition-all duration-[2s] ease-out group-hover:scale-105"
+            style="filter: brightness(.35) saturate(.7);"
+            loading="lazy" />
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/50"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-7 text-center">
+          <div class="text-4xl mb-3">🧑🤝🧑</div>
+          <h3 class="text-xl font-bold text-white mb-1 font-display">志愿者</h3>
+          <div class="w-8 h-0.5 bg-brick-500/50 mx-auto mb-3"></div>
+          <p class="text-white/50 text-xs leading-relaxed mb-3">布展协助、现场运营、传播记录</p>
+          <div class="flex flex-wrap justify-center gap-1.5">
+            <span class="px-2.5 py-1 rounded-full bg-white/[.06] text-white/40 text-[10px]">布展</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/[.06] text-white/40 text-[10px]">运营</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/[.06] text-white/40 text-[10px]">摄影</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/[.06] text-white/40 text-[10px]">传播</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 沉浸式场景：无限可能（报名前情绪渲染） ===== -->
+  <div class="relative overflow-hidden" style="height: min(42vh, 380px)">
+    <div class="absolute inset-0 bg-black">
+      <img src="https://nsp-hag-dist2dtemp-drcn.obs.cn-north-2.myhuaweicloud.cn/osms/9/4/52164f664cd74c508c40cc635bb0587c/ecd2c3a16303456fa99f29c3408c9a91.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=HPUAIXUY93FWZJAS0ICQ%2F20260703%2Fcn-north-2%2Fs3%2Faws4_request&X-Amz-Date=20260703T222107Z&X-Amz-Expires=7200&X-Amz-SignedHeaders=host&X-Amz-Signature=93cb060da8835446303f43f567695d0dcf9a18b5e1464638e662c94a33db491b"
+        alt="工业空间展览长廊"
+        class="w-full h-full object-cover object-[center_30%] sm:object-center transition-all duration-[2s] ease-out hover:scale-105"
+        style="filter: brightness(.75) saturate(.8); opacity: .55"
+        loading="lazy" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/60 via-[#0a0a0a]/10 to-[#0a0a0a]"></div>
+    <div class="absolute inset-0 flex items-center justify-center px-6">
+      <div class="text-center">
+        <div class="overflow-hidden">
+          <p class="font-mono text-[10px] sm:text-xs tracking-[8px] text-white/20 mb-5 animate-slide-up">JOIN US</p>
+        </div>
+        <div class="overflow-hidden">
+          <h2 class="text-4xl sm:text-6xl md:text-7xl font-black text-white/[.85] font-display leading-[1.15] animate-slide-up" style="animation-delay:.08s">
+            无限可能
+          </h2>
+        </div>
+        <div class="overflow-hidden">
+          <p class="text-white/25 text-xs sm:text-sm mt-4 tracking-wider animate-slide-up" style="animation-delay:.16s">你来，就是其中之一</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 报名表单 ===== -->
+  <section id="register" class="max-w-2xl mx-auto px-4 pb-32">
+    <div class="text-center mb-12">
+      <div class="industrial-tag mx-auto mb-6">SIGN UP</div>
+      <h2 class="text-3xl sm:text-5xl font-black text-white font-display">报名参与</h2>
+      <div class="divider-light max-w-[200px] mx-auto mt-6"></div>
+      <p class="text-white/30 text-sm mt-4">填写以下信息，我们会在 48 小时内与你联系</p>
+    </div>
+
+    <div class="card-ghost p-6 sm:p-10">
+      <form id="registerForm" class="space-y-5">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium text-white/50 mb-2 tracking-wider">姓名 <span class="text-rust-400">*</span></label>
+            <input type="text" name="name" required class="f-input" placeholder="你的名字" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-white/50 mb-2 tracking-wider">手机号 <span class="text-rust-400">*</span></label>
+            <input type="tel" name="phone" required class="f-input" placeholder="139 xxxx xxxx" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-white/50 mb-2 tracking-wider">报名身份 <span class="text-rust-400">*</span></label>
+          <select name="role" required class="f-input f-select">
+            <option value="" disabled selected>请选择你的身份</option>
+            <option value="策展人">🎨 策展人</option>
+            <option value="艺术家">✏️ 艺术家</option>
+            <option value="志愿者">🧑🤝🧑 志愿者</option>
+            <option value="其他">💡 其他</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-white/50 mb-2 tracking-wider">艺术方向 / 专长领域 <span class="text-rust-400">*</span></label>
+          <input type="text" name="specialty" required class="f-input" placeholder="如：装置艺术 · 绘画 · 声音艺术 · 行为艺术 · 影像 ……" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-white/50 mb-2 tracking-wider">可参与时间 <span class="text-rust-400">*</span></label>
+          <input type="text" name="available_time" required class="f-input" placeholder="如：全程筹备 / 仅活动当天 / 某几天 ……" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-white/50 mb-2 tracking-wider">个人简介 / 过往作品</label>
+          <textarea name="bio" rows="3" class="f-input" placeholder="简单介绍一下你自己，或者分享一下你过去的作品～"></textarea>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium text-white/50 mb-2 tracking-wider">作品链接 / 社交账号</label>
+            <input type="url" name="portfolio_url" class="f-input" placeholder="https:// 或 @id" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-white/50 mb-2 tracking-wider">微信号 <span class="text-white/20 text-[10px]">（方便拉群）</span></label>
+            <input type="text" name="wechat" class="f-input" placeholder="你的微信号" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-white/50 mb-2 tracking-wider">备注 / 其他想说的话</label>
+          <textarea name="remark" rows="2" class="f-input" placeholder="有什么想法、建议或者想对我们说的？"></textarea>
+        </div>
+
+        <button type="submit" class="btn-burn w-full py-4 text-white text-base tracking-wide flex items-center justify-center gap-3 mt-6">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>提交报名
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== 管理后台 (PIN保护) ===== -->
+  <section id="admin" class="max-w-5xl mx-auto px-4 pb-32 scroll-mt-20">
+    <div class="text-center mb-12">
+      <div class="industrial-tag mx-auto mb-6">ADMIN</div>
+      <h2 class="text-3xl sm:text-5xl font-black text-white font-display">报名管理</h2>
+      <div class="divider-light max-w-[200px] mx-auto mt-6"></div>
+    </div>
+
+    <!-- PIN 解锁 -->
+    <div id="adminLock" class="card-ghost p-8 max-w-sm mx-auto text-center">
+      <div class="text-4xl mb-4">🔒</div>
+      <p class="text-white/40 text-sm mb-6">请输入管理密码查看报名数据</p>
+      <input type="password" id="adminPin" class="f-input text-center text-lg tracking-[8px] mb-4" placeholder="· · · ·" maxlength="4" />
+      <button onclick="unlockAdmin()" class="btn-burn w-full py-3.5 text-white text-sm tracking-wide">解锁</button>
+      <p id="pinError" class="text-rust-400 text-xs mt-3 hidden">密码错误，请重试</p>
+    </div>
+
+    <!-- 数据面板 (初始隐藏) -->
+    <div id="adminPanel" class="hidden space-y-6">
+      <!-- 统计 -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="card-ghost p-5 text-center">
+          <div class="text-2xl font-black text-brick-400 font-display" id="statTotal">0</div>
+          <div class="text-xs text-white/30 mt-1">总报名</div>
+        </div>
+        <div class="card-ghost p-5 text-center">
+          <div class="text-2xl font-black text-brick-400 font-display" id="statCurator">0</div>
+          <div class="text-xs text-white/30 mt-1">策展人</div>
+        </div>
+        <div class="card-ghost p-5 text-center">
+          <div class="text-2xl font-black text-brick-400 font-display" id="statArtist">0</div>
+          <div class="text-xs text-white/30 mt-1">艺术家</div>
+        </div>
+        <div class="card-ghost p-5 text-center">
+          <div class="text-2xl font-black text-brick-400 font-display" id="statVolunteer">0</div>
+          <div class="text-xs text-white/30 mt-1">志愿者</div>
+        </div>
+      </div>
+
+      <!-- 操作栏 -->
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div class="text-white/30 text-xs">共 <span id="dataCount" class="text-white/60">0</span> 条记录</div>
+        <div class="flex items-center gap-2">
+          <button onclick="lockAdmin()" class="btn-outline px-4 py-2.5 text-white/40 text-xs tracking-wide inline-flex items-center gap-1.5 hover:text-white/70">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            退出管理
+          </button>
+          <button onclick="exportCSV()" class="btn-burn px-5 py-2.5 text-white text-xs tracking-wide inline-flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            导出 CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- 数据表格 (移动端卡片式，桌面端表格) -->
+      <div id="dataTable" class="space-y-4 sm:hidden"></div>
+      <div class="hidden sm:block overflow-x-auto">
+        <table class="w-full text-left" id="desktopTable">
+          <thead>
+            <tr class="text-white/30 text-[11px] tracking-wider uppercase">
+              <th class="pb-3 pr-3">姓名</th>
+              <th class="pb-3 pr-3">手机</th>
+              <th class="pb-3 pr-3">身份</th>
+              <th class="pb-3 pr-3">方向</th>
+              <th class="pb-3 pr-3">时间</th>
+              <th class="pb-3 pr-3">简介</th>
+              <th class="pb-3 pr-3">作品链接</th>
+              <th class="pb-3 pr-3">微信</th>
+              <th class="pb-3 pr-3">备注</th>
+              <th class="pb-3">报名时间</th>
+            </tr>
+          </thead>
+          <tbody id="desktopTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="text-center text-white/20 text-xs">—— 没有更多数据了 ——</div>
+    </div>
+  </section>
+
+  <!-- ===== 沉浸式场景：等你来（报名后收尾） ===== -->
+  <div class="relative overflow-hidden" style="height: min(45vh, 400px)">
+    <div class="absolute inset-0 bg-black">
+      <img src="https://nsp-hag-dist2dtemp-drcn.obs.cn-north-2.myhuaweicloud.cn/osms/9/4/74c90edb60314b9887777681a58b1530/231f3868e2bb4ea98eebeae17451830f.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=HPUAIXUY93FWZJAS0ICQ%2F20260703%2Fcn-north-2%2Fs3%2Faws4_request&X-Amz-Date=20260703T223455Z&X-Amz-Expires=7200&X-Amz-SignedHeaders=host&X-Amz-Signature=7496fa416078e1f5e332168f3c6f921c0198d85cc9955d26d8af803ebd07972b"
+        alt="工业风的交流空间"
+        class="w-full h-full object-cover object-center sm:object-[center_45%] transition-all duration-[2s] ease-out hover:scale-105"
+        style="filter: brightness(.7) saturate(.6); opacity: .5"
+        loading="lazy" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/60 via-[#0a0a0a]/10 to-[#0a0a0a]"></div>
+    <div class="absolute inset-0 flex items-center justify-center px-6">
+      <div class="text-center">
+        <div class="overflow-hidden">
+          <p class="font-mono text-[10px] sm:text-xs tracking-[8px] text-white/20 mb-5 animate-slide-up">YOUR TURN</p>
+        </div>
+        <div class="overflow-hidden">
+          <h2 class="text-4xl sm:text-6xl md:text-7xl font-black text-white/[.85] font-display leading-[1.15] animate-slide-up" style="animation-delay:.08s">等你来<br class="sm:hidden"/>改变</h2>
+        </div>
+        <div class="overflow-hidden mt-4">
+          <a href="#register" class="inline-block btn-burn px-10 py-4 text-white text-sm animate-slide-up" style="animation-delay:.16s">立即报名</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-white/[.03] py-12 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="flex items-center justify-center gap-3 mb-6">
+        <span class="w-6 h-px bg-white/10"></span>
+        <span class="text-white/10 text-[10px] tracking-[6px] uppercase">0 · 60 · 1</span>
+        <span class="w-6 h-px bg-white/10"></span>
+      </div>
+      <p class="text-white/10 text-xs tracking-[4px] uppercase">零元60天 · 公益融合艺术节</p>
+      <p class="text-white/[.04] text-xs mt-3">没有预算 · 只有创造力</p>
+    </div>
+  </footer>
+
+  <!-- ===== 成功弹窗 ===== -->
+  <div id="successModal" class="fixed inset-0 modal-bg flex items-center justify-center z-50 hidden p-4">
+    <div class="bg-[#141414] border border-white/[.05] rounded-3xl p-10 sm:p-14 max-w-sm w-full text-center animate-slide-up shadow-2xl">
+      <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-brick-500 to-rust-500 flex items-center justify-center shadow-lg">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <h3 class="text-2xl font-black text-white mb-2 font-display">报名成功 ✦</h3>
+      <p class="text-white/40 text-sm mb-8 leading-relaxed">感谢你的参与！<br/>我们会在 48 小时内联系你～</p>
+      <button onclick="closeModal()" class="btn-burn px-10 py-3.5 text-white text-sm tracking-wide rounded-xl">知道了</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-3"></div>
+
+  <script>
+    const client = aipexbase.createClient({ baseUrl: 'https://baas.kuafuai.net/baas-api', apiKey: 'baas_G8qG4yvU' });
+    const ADMIN_PIN = '8888';
+
+    // ===== Toast =====
+    function showToast(msg, type='success'){
+      const c=document.getElementById('toast-container'),t=document.createElement('div');
+      const s={success:'bg-green-900/70 border-green-700/20 text-green-300',error:'bg-red-900/70 border-red-700/20 text-red-300',info:'bg-blue-900/70 border-blue-700/20 text-blue-300'};
+      const i={success:'<path d="M5 13l4 4L19 7"/>',error:'<path d="M6 18L18 6M6 6l12 12"/>',info:'<path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>'};
+      t.className=`flex items-center px-4 py-3 rounded-xl border shadow-2xl ${s[type]} animate-slide-up`;
+      t.innerHTML=`<svg class="w-5 h-5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">${i[type]}</svg><span class="font-medium text-sm">${msg}</span>`;
+      c.appendChild(t);
+      setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(100%)';t.style.transition='all .3s';setTimeout(()=>t.remove(),300)},3500);
+    }
+
+    function showModal(){document.getElementById('successModal').classList.remove('hidden');document.body.style.overflow='hidden'}
+    function closeModal(){document.getElementById('successModal').classList.add('hidden');document.body.style.overflow=''}
+
+    // ===== 表单提交 =====
+    document.getElementById('registerForm').addEventListener('submit', async function(e){
+      e.preventDefault();
+      const f=this,btn=f.querySelector('button[type="submit"]');
+      const data={
+        name:f.name.value.trim(),phone:f.phone.value.trim(),role:f.role.value,
+        specialty:f.specialty.value.trim(),available_time:f.available_time.value.trim(),
+        bio:f.bio.value.trim()||'',portfolio_url:f.portfolio_url.value.trim()||'',
+        wechat:f.wechat.value.trim()||'',remark:f.remark.value.trim()||'',
+        created_at:new Date().toISOString().replace('T',' ').split('.')[0]
+      };
+      btn.disabled=true;
+      btn.innerHTML='<svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg> 提交中...';
+      try{
+        const r=await client.db.from('registrations').insert().values(data);
+        if(r.success){showModal();f.reset()}
+        else showToast(r.message||'提交失败','error');
+      }catch(err){showToast('网络错误，请稍后重试','error')}
+      finally{
+        btn.disabled=false;
+        btn.innerHTML='<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> 提交报名';
+      }
+    });
+
+    // ===== 管理后台 =====
+    function lockAdmin(){
+      document.getElementById('adminLock').classList.remove('hidden');
+      document.getElementById('adminPanel').classList.add('hidden');
+      document.getElementById('adminPin').value='';
+      document.getElementById('pinError').classList.add('hidden');
+      showToast('已退出管理','info');
+    }
+
+    function unlockAdmin(){
+      const pin=document.getElementById('adminPin').value;
+      if(pin===ADMIN_PIN){
+        document.getElementById('adminLock').classList.add('hidden');
+        document.getElementById('adminPanel').classList.remove('hidden');
+        document.getElementById('pinError').classList.add('hidden');
+        loadData();
+      }else{
+        document.getElementById('pinError').classList.remove('hidden');
+      }
+    }
+
+    async function loadData(){
+      try{
+        const res=await client.db.from('registrations').list().order('created_at','desc');
+        if(res.success&&res.data){
+          const data=res.data;
+          renderStats(data);
+          renderTable(data);
+        }
+      }catch(err){console.error(err)}
+    }
+
+    function renderStats(data){
+      document.getElementById('statTotal').textContent=data.length;
+      document.getElementById('statCurator').textContent=data.filter(d=>d.role==='策展人').length;
+      document.getElementById('statArtist').textContent=data.filter(d=>d.role==='艺术家').length;
+      document.getElementById('statVolunteer').textContent=data.filter(d=>d.role==='志愿者').length;
+    }
+
+    function formatDate(d){
+      if(!d) return '-';
+      return d.replace('T',' ').substring(0,19);
+    }
+
+    function renderTable(data){
+      document.getElementById('dataCount').textContent=data.length;
+
+      // 移动端卡片
+      const mobileContainer=document.getElementById('dataTable');
+      mobileContainer.innerHTML=data.map((d,i)=>`
+        <div class="card-ghost p-4 text-sm">
+          <div class="flex justify-between items-start mb-2">
+            <div><span class="text-white font-semibold">${escHtml(d.name||'')}</span> <span class="text-white/30 text-xs ml-1">${escHtml(d.role||'')}</span></div>
+            <span class="text-white/20 text-[10px]">${formatDate(d.created_at)}</span>
+          </div>
+          <div class="text-white/40 text-xs space-y-1">
+            <div>📞 ${escHtml(d.phone||'')}</div>
+            <div>🎨 ${escHtml(d.specialty||'')}</div>
+            <div>⏰ ${escHtml(d.available_time||'')}</div>
+            ${d.wechat?`<div>💬 ${escHtml(d.wechat)}</div>`:''}
+            ${d.bio?`<div class="text-white/30 mt-1">${escHtml(d.bio)}</div>`:''}
+          </div>
+        </div>
+      `).join('');
+
+      // 桌面端表格
+      const tbody=document.getElementById('desktopTableBody');
+      tbody.innerHTML=data.map(d=>`
+        <tr class="border-t border-white/[.03] text-white/50 text-xs">
+          <td class="py-3 pr-3 text-white/80 font-medium">${escHtml(d.name||'')}</td>
+          <td class="py-3 pr-3">${escHtml(d.phone||'')}</td>
+          <td class="py-3 pr-3">${escHtml(d.role||'')}</td>
+          <td class="py-3 pr-3">${escHtml(d.specialty||'')}</td>
+          <td class="py-3 pr-3">${escHtml(d.available_time||'')}</td>
+          <td class="py-3 pr-3 max-w-[150px] truncate" title="${escHtml(d.bio||'')}">${escHtml(d.bio||'-')}</td>
+          <td class="py-3 pr-3 max-w-[120px] truncate">${d.portfolio_url?`<a href="${escHtml(d.portfolio_url)}" target="_blank" class="text-brick-400 hover:underline">链接</a>`:'-'}</td>
+          <td class="py-3 pr-3">${escHtml(d.wechat||'-')}</td>
+          <td class="py-3 pr-3 max-w-[120px] truncate" title="${escHtml(d.remark||'')}">${escHtml(d.remark||'-')}</td>
+          <td class="py-3 text-white/20">${formatDate(d.created_at)}</td>
+        </tr>
+      `).join('');
+    }
+
+    function escHtml(s){
+      if(!s) return '';
+      const d=document.createElement('div');
+      d.textContent=s;
+      return d.innerHTML;
+    }
+
+    // ===== CSV 导出 =====
+    async function exportCSV(){
+      try{
+        const res=await client.db.from('registrations').list().order('created_at','desc');
+        if(!res.success||!res.data){showToast('获取数据失败','error');return}
+        const data=res.data;
+        if(data.length===0){showToast('没有数据可导出','warning');return}
+
+        // BOM for Excel Chinese display
+        const bom='\uFEFF';
+        const headers=['姓名','手机号','身份','艺术方向','可参与时间','个人简介','作品链接','微信号','备注','报名时间'];
+        const rows=data.map(d=>[
+          d.name||'',d.phone||'',d.role||'',d.specialty||'',d.available_time||'',
+          (d.bio||'').replace(/"/g,'""'),d.portfolio_url||'',d.wechat||'',
+          (d.remark||'').replace(/"/g,'""'),formatDate(d.created_at)
+        ]);
+        const csv=bom+[headers.join(','),...rows.map(r=>r.map(v=>`"${v}"`).join(','))].join('\n');
+        const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+        const url=URL.createObjectURL(blob);
+        const a=document.createElement('a');
+        a.href=url;
+        a.download=`艺术节报名_${new Date().toISOString().substring(0,10)}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast(`已导出 ${data.length} 条数据`);
+      }catch(err){
+        showToast('导出失败','error');
+        console.error(err);
+      }
+    }
+  </script>
+</body>
+</html>

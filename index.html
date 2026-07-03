@@ -86,6 +86,14 @@
     .corner-rust::after{content:'';position:absolute;bottom:-1px;left:-1px;width:14px;height:14px;border-bottom:2px solid rgba(212,106,30,.2);border-left:2px solid rgba(212,106,30,.2)}
     /* 品牌光环 */
     .brand-ring-45{width:44px;height:44px;padding:3px;border-radius:50%;background:conic-gradient(from 45deg, rgba(45,138,45,.3), rgba(212,106,30,.12), rgba(45,138,45,.08), rgba(45,138,45,.3));animation:spin 10s linear infinite}
+    /* ===== 滚动渐显 ===== */
+    .reveal{opacity:0;transform:translateY(50px);transition:opacity .7s cubic-bezier(0.16,1,0.3,1),transform .7s cubic-bezier(0.16,1,0.3,1)}
+    .reveal.show{opacity:1;transform:translateY(0)}
+    .reveal-delay-1{transition-delay:.1s}
+    .reveal-delay-2{transition-delay:.2s}
+    .reveal-delay-3{transition-delay:.3s}
+    .reveal-delay-4{transition-delay:.4s}
+    .reveal-delay-5{transition-delay:.5s}
     @keyframes spin{to{transform:rotate(360deg)}}
     .glow-mint{box-shadow:0 0 60px rgba(45,138,45,.06),0 0 120px rgba(45,138,45,.03)}
     /* title斜角包裹 */
@@ -186,7 +194,7 @@
   </header>
 
   <!-- ===== 沉浸式场景：废墟状态（视差效果） ===== -->
-  <div class="relative overflow-hidden" style="height: min(60vh, 520px)">
+  <div class="relative overflow-hidden reveal" style="height: min(60vh, 520px)">
     <div class="absolute inset-0 bg-black">
       <img src="images/01-ruins.jpg"
         alt="改造前的地下废弃空间"
@@ -214,7 +222,7 @@
   </div>
 
   <!-- ===== 关于 ===== -->
-  <section id="about" class="max-w-5xl mx-auto px-4 py-28 sm:py-36">
+  <section id="about" class="max-w-5xl mx-auto px-4 py-28 sm:py-36 reveal">
     <div class="text-center mb-16">
       <div class="tag-45 mx-auto mb-6">ABOUT</div>
       <h2 class="text-3xl sm:text-5xl font-black text-white font-display">这个挑战</h2>
@@ -241,17 +249,17 @@
         <h3 class="text-white font-semibold text-sm mb-2 tracking-wide">零元挑战</h3>
         <p class="text-white/35 text-xs leading-relaxed">不花一分钱，用回收材料、空间本身和人的创造力做艺术</p>
       </div>
-      <div class="card-45 p-6 text-center animate-slide-up" style="animation-delay:.08s">
+      <div class="card-45 p-6 text-center reveal reveal-delay-1" style="transition-delay:.08s">
         <div class="text-3xl mb-3">🤝</div>
         <h3 class="text-white font-semibold text-sm mb-2 tracking-wide">融合共创</h3>
         <p class="text-white/35 text-xs leading-relaxed">打破媒介边界——装置、绘画、声音、行为、影像，什么都可以</p>
       </div>
-      <div class="card-45 p-6 text-center animate-slide-up" style="animation-delay:.16s">
+      <div class="card-45 p-6 text-center reveal reveal-delay-1" style="transition-delay:.16s">
         <div class="text-3xl mb-3">🏚️</div>
         <h3 class="text-white font-semibold text-sm mb-2 tracking-wide">空间即作品</h3>
         <p class="text-white/35 text-xs leading-relaxed">废弃空间的每一寸都是画布，让艺术在废墟中自然生长</p>
       </div>
-      <div class="card-45 p-6 text-center animate-slide-up" style="animation-delay:.24s">
+      <div class="card-45 p-6 text-center reveal reveal-delay-1" style="transition-delay:.24s">
         <div class="text-3xl mb-3">💡</div>
         <h3 class="text-white font-semibold text-sm mb-2 tracking-wide">人人可参与</h3>
         <p class="text-white/35 text-xs leading-relaxed">不管你是艺术家还是素人，只要有一个想法，这里就欢迎你</p>
@@ -295,7 +303,7 @@
   </div>
 
   <!-- ===== 招募角色 ===== -->
-  <section id="roles" class="max-w-5xl mx-auto px-4 py-20 sm:py-28">
+  <section id="roles" class="max-w-5xl mx-auto px-4 py-20 sm:py-28 reveal">
     <div class="text-center mb-16">
       <div class="tag-45 mx-auto mb-6">RECRUITING</div>
       <h2 class="text-3xl sm:text-5xl font-black text-white font-display">我们在找你</h2>
@@ -404,7 +412,7 @@
   </div>
 
   <!-- ===== 报名表单 ===== -->
-  <section id="register" class="max-w-2xl mx-auto px-4 pb-32">
+  <section id="register" class="max-w-2xl mx-auto px-4 pb-32 reveal">
     <div class="text-center mb-12">
       <div class="tag-45 mx-auto mb-6">SIGN UP</div>
       <h2 class="text-3xl sm:text-5xl font-black text-white font-display">报名参与</h2>
@@ -475,7 +483,7 @@
   </section>
 
   <!-- ===== 管理后台 (PIN保护) ===== -->
-  <section id="admin" class="max-w-5xl mx-auto px-4 pb-32 scroll-mt-20">
+  <section id="admin" class="max-w-5xl mx-auto px-4 pb-32 scroll-mt-20 reveal">
     <div class="text-center mb-12">
       <div class="tag-45 mx-auto mb-6">ADMIN</div>
       <h2 class="text-3xl sm:text-5xl font-black text-white font-display">报名管理</h2>
@@ -495,19 +503,19 @@
     <div id="adminPanel" class="hidden space-y-6">
       <!-- 统计 -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div class="card-45 p-5 text-center corner-mint">
+        <div class="card-45 p-5 text-center corner-mint reveal reveal-delay-2">
           <div class="text-2xl font-black text-brick-400 font-display" id="statTotal">0</div>
           <div class="text-xs text-white/30 mt-1">总报名</div>
         </div>
-        <div class="card-45 p-5 text-center corner-mint">
+        <div class="card-45 p-5 text-center corner-mint reveal reveal-delay-2">
           <div class="text-2xl font-black text-brick-400 font-display" id="statCurator">0</div>
           <div class="text-xs text-white/30 mt-1">策展人</div>
         </div>
-        <div class="card-45 p-5 text-center corner-mint">
+        <div class="card-45 p-5 text-center corner-mint reveal reveal-delay-2">
           <div class="text-2xl font-black text-brick-400 font-display" id="statArtist">0</div>
           <div class="text-xs text-white/30 mt-1">艺术家</div>
         </div>
-        <div class="card-45 p-5 text-center corner-mint">
+        <div class="card-45 p-5 text-center corner-mint reveal reveal-delay-2">
           <div class="text-2xl font-black text-brick-400 font-display" id="statVolunteer">0</div>
           <div class="text-xs text-white/30 mt-1">志愿者</div>
         </div>
@@ -580,7 +588,7 @@
   </div>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="border-t border-white/[.03] pt-16 pb-12 px-4 relative overflow-hidden">
+  <footer class="border-t border-white/[.03] pt-16 pb-12 px-4 relative overflow-hidden reveal">
     <div class="absolute bottom-[-15%] left-1/2 -translate-x-1/2 w-[70vw] h-[35vh] rotate-45 origin-bottom pointer-events-none z-0"
          style="background:radial-gradient(ellipse at center, rgba(45,138,45,.04) 0%, transparent 70%)"></div>
     <div class="absolute top-0 left-0 right-0 h-px" style="background:linear-gradient(90deg, transparent, rgba(45,138,45,.06), rgba(212,106,30,.025), transparent)"></div>
@@ -799,6 +807,18 @@
         console.error(err);
       }
     }
+  </script>
+  <!-- ===== 滚动渐显 Intersection Observer ===== -->
+  <script>
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   </script>
 </body>
 </html>

@@ -38,7 +38,7 @@
     ::-webkit-scrollbar-track{background:#111}
     ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#2d8a2d,#1a521a)}
     /* 45°青年 设计体系 = 斜角切割 × 几何 × 深绿 × 工业橙 */
-    .concrete-bg{background-color:#0d0d0d;background-image:repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(255,255,255,0.012) 48px,rgba(255,255,255,0.012) 49px),repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(255,255,255,0.012) 48px,rgba(255,255,255,0.012) 49px)}
+    .concrete-bg{background-color:#0d0d0d;background-image:repeating-linear-gradient(45deg,transparent,transparent 64px,rgba(45,138,45,.015) 64px,rgba(45,138,45,.015) 64.5px),repeating-linear-gradient(-45deg,transparent,transparent 64px,rgba(45,138,45,.01) 64px,rgba(45,138,45,.01) 64.5px),repeating-linear-gradient(0deg,transparent,transparent 32px,rgba(45,138,45,.006) 32px,rgba(45,138,45,.006) 32.5px),repeating-linear-gradient(90deg,transparent,transparent 32px,rgba(45,138,45,.004) 32px,rgba(45,138,45,.004) 32.5px),linear-gradient(135deg,#0a0a0a 0%,#0d0d0d 30%,#0a0a0a 60%,#0d0d0d 100%)}
     .noise-overlay{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.035}
     .noise-overlay::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
     /* ===== 45°切割 ===== */
@@ -95,10 +95,29 @@
 </head>
 <body class="concrete-bg min-h-screen relative overflow-x-hidden">
   <div class="noise-overlay"></div>
-  <div class="fixed top-[-10%] left-[-5%] w-[600px] h-[600px] bg-mint-500/3 blur-[120px] animate-drift pointer-events-none"></div>
-  <div class="fixed bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-mint-700/3 blur-[120px] animate-float pointer-events-none" style="animation-delay:-4s"></div>
+  <!-- 45deg giant watermark: "45'" Youth rotated 45 degrees across page -->
+  <div class="fixed inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden select-none">
+    <div class="text-[18vw] sm:text-[13vw] font-black whitespace-nowrap text-white/[.012] tracking-[-2vw] sm:tracking-[-1.5vw] origin-center -rotate-45 select-none animate-fade-in"
+         style="font-family:'Impact','Arial Black',sans-serif;animation-duration:2.5s">45&#176;&#38738;&#24180;</div>
+  </div>
+  <!-- diagonal brand color bands -->
+  <div class="fixed top-[-20%] right-[-10%] w-[25vw] h-[150vh] pointer-events-none z-0 origin-center rotate-[35deg]"
+       style="background:linear-gradient(180deg, rgba(45,138,45,.06), rgba(45,138,45,.02) 40%, transparent 70%)"></div>
+  <div class="fixed bottom-[-20%] left-[-10%] w-[20vw] h-[120vh] pointer-events-none z-0 origin-center -rotate-[35deg]"
+       style="background:linear-gradient(180deg, rgba(212,106,30,.04), rgba(45,138,45,.02) 40%, transparent 70%)"></div>
+  <!-- 45deg diamond center glow -->
+  <div class="fixed top-[5%] left-[50%] -translate-x-1/2 w-[50vw] h-[50vw] pointer-events-none z-0 rotate-45"
+       style="background:radial-gradient(circle, rgba(45,138,45,.03) 0%, transparent 60%)"></div>
+  <!-- preserve original atmosphere -->
   <div class="splatter w-28 h-28 top-[8%] left-[2%]" style="background:radial-gradient(circle,rgba(45,138,45,.05) 0%,transparent 70%)"></div>
   <div class="splatter w-20 h-20 bottom-[20%] right-[3%]" style="background:radial-gradient(circle,rgba(212,106,30,.04) 0%,transparent 70%)"></div>
+  <!-- 45deg diamond floaters -->
+  <div class="fixed top-[15%] right-[8%] w-3 h-3 border border-mint-500/10 rotate-45 pointer-events-none z-0 animate-float" style="animation-delay:-2s"></div>
+  <div class="fixed bottom-[25%] left-[5%] w-5 h-5 border border-mint-500/6 rotate-45 pointer-events-none z-0 animate-float" style="animation-delay:-5s"></div>
+  <div class="fixed top-[60%] right-[12%] w-[6px] h-[6px] bg-mint-500/8 rotate-45 pointer-events-none z-0"></div>
+  <div class="fixed bottom-[10%] right-[20%] w-4 h-4 border border-rust-500/10 rotate-45 pointer-events-none z-0 animate-float" style="animation-delay:-3s"></div>
+  <div class="fixed top-[35%] left-[3%] w-[10px] h-[10px] bg-mint-500/5 rotate-45 pointer-events-none z-0"></div>
+  <div class="fixed bottom-[45%] right-[2%] w-2 h-2 border border-mint-500/10 rotate-45 pointer-events-none z-0"></div>
 
   <!-- ===== NAV ===== -->
   <div class="fixed top-3 left-1/2 -translate-x-1/2 z-50 nav-45 bg-white/[.025] border border-white/[.05] backdrop-blur-xl px-4 sm:px-5 py-2.5 flex items-center gap-3 sm:gap-6 text-xs">
@@ -567,7 +586,14 @@
   </div>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="border-t border-white/[.03] pt-16 pb-12 px-4">
+  <footer class="border-t border-white/[.03] pt-16 pb-12 px-4 relative overflow-hidden">
+    <div class="absolute bottom-[-15%] left-1/2 -translate-x-1/2 w-[70vw] h-[35vh] rotate-45 origin-bottom pointer-events-none z-0"
+         style="background:radial-gradient(ellipse at center, rgba(45,138,45,.04) 0%, transparent 70%)"></div>
+    <div class="absolute top-0 left-0 right-0 h-px" style="background:linear-gradient(90deg, transparent, rgba(45,138,45,.06), rgba(212,106,30,.025), transparent)"></div>
+    <!-- 45°品牌底部装饰光晕 -->
+    <div class="absolute bottom-[-15%] left-1/2 -translate-x-1/2 w-[70vw] h-[35vh] rotate-45 origin-bottom pointer-events-none z-0"
+         style="background:radial-gradient(ellipse at center, rgba(45,138,45,.04) 0%, transparent 70%)"></div>
+    <div class="absolute top-0 left-0 right-0 h-px" style="background:linear-gradient(90deg, transparent, rgba(45,138,45,.06), rgba(212,106,30,.025), transparent)"></div>
     <div class="max-w-5xl mx-auto text-center">
       <div class="flex items-center justify-center gap-3 mb-8">
         <span class="w-6 h-px bg-white/10"></span>

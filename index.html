@@ -700,6 +700,7 @@
 
     // ===== 管理后台操作 =====
     function lockAdmin(){
+      document.getElementById('admin').classList.add('hidden');
       document.getElementById('adminLock').classList.remove('hidden');
       document.getElementById('adminPanel').classList.add('hidden');
       document.getElementById('adminPin').value='';

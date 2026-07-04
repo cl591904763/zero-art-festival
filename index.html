@@ -486,7 +486,7 @@
   </section>
 
   <!-- ===== 管理后台 (PIN保护) ===== -->
-  <section id="admin" class="max-w-5xl mx-auto px-4 pb-32 scroll-mt-20 reveal">
+  <section id="admin" class="max-w-5xl mx-auto px-4 pb-32 scroll-mt-20 reveal hidden">
     <div class="text-center mb-12">
       <div class="tag-45 mx-auto mb-6">ADMIN</div>
       <h2 class="text-3xl sm:text-5xl font-black text-white font-display">报名管理</h2>
@@ -688,7 +688,17 @@
       }
     });
 
-    // ===== 管理后台 =====
+    // ===== 管理后台 - 点击"管理"导航链接时显示隐藏的管理区域 =====
+    document.getElementById('adminLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        const section = document.getElementById('admin');
+        section.classList.remove('hidden');
+        setTimeout(() => {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+    });
+
+    // ===== 管理后台操作 =====
     function lockAdmin(){
       document.getElementById('adminLock').classList.remove('hidden');
       document.getElementById('adminPanel').classList.add('hidden');
